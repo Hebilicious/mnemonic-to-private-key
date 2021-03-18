@@ -15,7 +15,8 @@
   "license": "MIT",
   "scripts": {
     "test": "uvu tests",
-    "np": "np"
+    "np": "np",
+    "publish": "np --no-2fa"
   },
   "dependencies": {
     "bitcore-mnemonic": "^8.25.7"
