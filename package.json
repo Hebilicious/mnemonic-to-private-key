@@ -1,6 +1,6 @@
 {
   "name": "mnemonic-to-private-key",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Hebilicious https://github.com/hebilicious",
   "type": "module",
   "repository": {
