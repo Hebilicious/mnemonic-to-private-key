@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "author": "Hebilicious https://github.com/hebilicious",
   "type": "module",
-  "repository": "github.com/hebilicious/mnemonic-to-private-key",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hebilicious/mnemonic-to-private-key",
+    "directory": "src"
+  },
+  "main": "./lib/index.js",
+  "bin": {
+    "mnemonic-to-private-key": "./lib/index.js"
+  },
   "license": "MIT",
   "scripts": {
-    "test": "uvu tests"
+    "test": "uvu tests",
+    "np": "np"
   },
   "dependencies": {
     "bitcore-mnemonic": "^8.25.7"
