@@ -1,0 +1,18 @@
+{
+  "name": "mnemonic-to-private-key",
+  "version": "0.1.0",
+  "author": "Hebilicious https://github.com/hebilicious",
+  "type": "module",
+  "repository": "github.com/hebilicious/mnemonic-to-private-key",
+  "license": "MIT",
+  "scripts": {
+    "test": "uvu tests"
+  },
+  "dependencies": {
+    "bitcore-mnemonic": "^8.25.7"
+  },
+  "devDependencies": {
+    "np": "^7.4.0",
+    "uvu": "^0.5.1"
+  }
+}
