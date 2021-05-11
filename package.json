@@ -19,11 +19,11 @@
     "ts": "ts-node"
   },
   "dependencies": {
-    "bitcore-mnemonic": "^8.25.7"
+    "bitcore-mnemonic": "^8.25.7",
+    "elliptic": "^6.5.4",
+    "ethereumjs-util": "^7.0.10"
   },
   "devDependencies": {
-    "elliptic": "^6.5.4",
-    "ethereumjs-util": "^7.0.10",
     "np": "^7.4.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4",
