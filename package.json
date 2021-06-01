@@ -2,30 +2,34 @@
   "name": "mnemonic-to-private-key",
   "version": "0.3.1",
   "author": "Hebilicious https://github.com/hebilicious",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/hebilicious/mnemonic-to-private-key",
     "directory": "src"
   },
-  "main": "./lib/index.js",
+  "main": "./lib/lib.js",
   "bin": {
-    "mnemonic-to-private-key": "./lib/index.js"
+    "mnemonic-to-private-key": "./lib/lib.js"
   },
   "license": "MIT",
   "scripts": {
-    "test": "uvu tests",
+    "test": "uvu -r esbuild-register tests",
     "np": "np --no-2fa",
-    "ts": "ts-node"
+    "ts": "node -r esbuild-register",
+    "build": "esbuild --bundle src/lib.ts --outdir=lib --sourcemap --platform=node",
+    "lib-test": "node lib/lib.js 'garlic pupil february legend morning bright section stool action stadium course busy' password"
   },
   "dependencies": {
     "bitcore-mnemonic": "^8.25.7",
     "elliptic": "^6.5.4",
-    "ethereumjs-util": "^7.0.10"
+    "ethereumjs-util": "^7.0.10",
+    "ethereumjs-wallet": "^1.0.1"
   },
   "devDependencies": {
+    "@types/elliptic": "^6.4.12",
+    "esbuild": "^0.12.5",
+    "esbuild-register": "^2.5.0",
     "np": "^7.4.0",
-    "ts-node": "^9.1.1",
     "typescript": "^4.2.4",
     "uvu": "^0.5.1"
   }
