@@ -16,8 +16,9 @@
     "test": "uvu -r esbuild-register tests",
     "np": "np --no-2fa",
     "ts": "node -r esbuild-register",
-    "build": "esbuild --bundle src/lib.ts --outdir=lib --sourcemap --platform=node",
-    "lib-test": "node lib/lib.js 'garlic pupil february legend morning bright section stool action stadium course busy' password"
+    "build": "tsc",
+    "libtest:noarg": "node lib/lib.js",
+    "libtest": "node lib/lib.js 'garlic pupil february legend morning bright section stool action stadium course busy' password"
   },
   "dependencies": {
     "bitcore-mnemonic": "^8.25.7",
