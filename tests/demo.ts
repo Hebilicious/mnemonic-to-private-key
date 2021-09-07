@@ -2,7 +2,7 @@ import Mnemonic from "bitcore-mnemonic"
 
 import { test } from "uvu"
 import * as assert from "uvu/assert"
-import { createKeyStore, createPrivateKey } from "../src/index"
+import { createCardanoWallet, createKeyStore, createPrivateKey } from "../src/index"
 
 const mnemonic =
   "garlic pupil february legend morning bright section stool action stadium course busy"
@@ -36,5 +36,11 @@ test("can generate a keystore", async () => {
   //@ts-ignore Address is not part of the v3keystore spec
   assert.is("0x" + keystore.address, address)
   assert.is(JSON.stringify(keystore), expectedKeystore)
+})
+
+test("Can create a Cardano wallet", async () => {
+  const result = await createCardanoWallet()
+  console.log(result)
+  assert.is(true, true)
 })
 test.run()
