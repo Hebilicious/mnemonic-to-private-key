@@ -2,6 +2,8 @@ import Mnemonic from "bitcore-mnemonic"
 import elliptic from "elliptic"
 import { pubToAddress } from "ethereumjs-util"
 import Wallet from "ethereumjs-wallet"
+import bip39 from "bip39"
+import Cardano from "@emurgo/cardano-serialization-lib-nodejs"
 
 function padTo32(msg: Buffer) {
   while (msg.length < 32) {
@@ -57,4 +59,34 @@ export const createKeyStore = async ({
   return keystore
 }
 
+const harden = (num: number) => 0x80000000 + num
+
+export const createCardanoWallet = async ({ length = 24 } = {}) => {
+  const network = Cardano.NetworkInfo.mainnet().network_id()
+  const phrase = bip39.generateMnemonic((32 * length) / 3)
+  const entropy = bip39.mnemonicToEntropy(phrase)
+  const rootKey = Cardano.Bip32PrivateKey.from_bip39_entropy(
+    Buffer.from(entropy, "hex"),
+    Buffer.from("")
+  )
+  const privateKey = rootKey.derive(harden(1852)).derive(harden(1815)).derive(harden(0))
+  const stakeKey = privateKey.derive(2).derive(0).to_public()
+  const rewardAddress = Cardano.RewardAddress.new(
+    network,
+    Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash())
+  )
+  const publicKey = Cardano.Bip32PublicKey.from_bech32(privateKey.to_public().to_bech32())
+  const utxoPublicKey = publicKey.derive(0).derive(0)
+  const address = Cardano.BaseAddress.new(
+    network,
+    Cardano.StakeCredential.from_keyhash(utxoPublicKey.to_raw_key().hash()),
+    Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash())
+  )
+  return {
+    phrase,
+    privateKey: privateKey.to_bech32(),
+    rewardAddress: rewardAddress.to_address().to_bech32(),
+    address: address.to_address().to_bech32()
+  }
+}
 export default createPrivateKey

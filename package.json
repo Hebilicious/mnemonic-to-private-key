@@ -14,6 +14,7 @@
   "license": "MIT",
   "scripts": {
     "test": "uvu -r esbuild-register tests",
+    "cardano-test": "yarn ts src/test.ts",
     "np": "np --no-2fa",
     "ts": "node -r esbuild-register",
     "build": "tsc",
@@ -21,6 +22,8 @@
     "libtest": "node lib/lib.js 'garlic pupil february legend morning bright section stool action stadium course busy' password"
   },
   "dependencies": {
+    "@emurgo/cardano-serialization-lib-nodejs": "^8.0.0",
+    "bip39": "^3.0.4",
     "bitcore-mnemonic": "^8.25.7",
     "elliptic": "^6.5.4",
     "ethereumjs-util": "^7.0.10",
